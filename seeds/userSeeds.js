@@ -1,24 +1,20 @@
-const { Post } = require("../models");
+const { User } = require("../models");
 
-const postData = [
+const userData = [
   {
-    title: "Super Cool Post",
-    post_text: "This is the text for the super cool post",
-    user_id: 2,
+    username: "user1",
+    password: "password1",
   },
   {
-    title: "Another Post!",
-    post_text: "This is the text for another post, but from a different user",
-    user_id: 1,
+    username: "user2",
+    password: "password2",
   },
   {
-    title: "This post is the coolest post though",
-    post_text:
-      "The reason this post is the coolest is because user3 created it.",
-    user_id: 3,
+    username: "user3",
+    password: "password3",
   },
 ];
 
-const seedPosts = () => User.bulkCreate(postData);
+const seedUsers = () => User.bulkCreate(userData);
 
-module.exports = seedPosts;
+module.exports = seedUsers;

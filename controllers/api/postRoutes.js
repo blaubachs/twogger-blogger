@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const { User, Post } = require("../../models");
 
-router.get("/", (req, res) => {
-  res.send("get req from /api/posts");
+router.get("/", async (req, res) => {
+  const postData = await Post.findAll();
+  res.json(postData);
 });
 
 module.exports = router;
