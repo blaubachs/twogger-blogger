@@ -11,6 +11,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3000;
 // Requiring our models for syncing
+const { User, Post } = require("./models");
 
 // Set up sessions for saving cookies
 const sess = {
