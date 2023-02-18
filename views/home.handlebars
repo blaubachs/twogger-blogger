@@ -1,11 +1,22 @@
 <section class="d-flex flex-column p-2 align-items-center">
 {{#each allPosts}}
-<div class="card text-bg-tertiary mb-3" style="min-width: 75%;">
+<div class="card text-bg-tertiary mb-3 w-100 rounded-0" style="min-width: 75%;">
   <div class="card-header">{{User.username}} says:</div>
   <div class="card-body">
     <h5 class="card-title">{{title}}</h5>
     <p class="card-text">{{post_text}}</p>
   </div>
+  <p class="mx-3">
+  <a class="btn btn-primary" data-bs-toggle="collapse" href="#{{id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Comments
+  </a>
+</p>
+{{!-- This needs to render for each comment soon. --}}
+<div class="collapse m-3" id="{{id}}">
+  <div class="card card-body rounded-0">
+    Comment
+  </div>
+</div>
 </div>
 {{/each}}
 </section>
