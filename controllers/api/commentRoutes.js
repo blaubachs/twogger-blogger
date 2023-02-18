@@ -9,4 +9,17 @@ router.get("/", async (req, res) => {
   res.json(allComments);
 });
 
+router.post("/:id", async (req, res) => {
+  // create a comment, the post req from the front end needs to grab the id of the post from the DOM.
+  const createComment = await Comment.create({
+    comment_text: req.body.comment_text,
+    PostId: req.params.id,
+  });
+  if (!createComment) {
+    res.status(500).json({ msg: "An error occurred!" });
+  } else {
+    res.status(200).json(createComment);
+  }
+});
+
 module.exports = router;
