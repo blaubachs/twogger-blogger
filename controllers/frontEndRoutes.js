@@ -18,6 +18,10 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/sessions", (req, res) => {
+  res.json(req.session);
+});
+
 router.get("/login", (req, res) => {
   res.render("login");
 });
