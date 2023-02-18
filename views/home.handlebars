@@ -13,9 +13,11 @@
 </p>
 {{!-- This needs to render for each comment soon. --}}
 <div class="collapse m-3" id="{{id}}">
+{{#each Comments}}
   <div class="card card-body rounded-0">
-    Comment
+    {{comment_text}}
   </div>
+{{/each}}
 </div>
 </div>
 {{/each}}
