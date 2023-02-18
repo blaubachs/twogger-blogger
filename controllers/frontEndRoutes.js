@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { User, Post } = require("../models");
+const { User, Post, Comment } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
-    const postData = await Post.findAll({ include: [User] });
+    const postData = await Post.findAll({
+      include: [User, Comment],
+    });
     const hbsPost = postData.map((post) => post.toJSON());
     console.log(hbsPost);
     res.render("home", {
