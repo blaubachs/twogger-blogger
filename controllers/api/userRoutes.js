@@ -38,6 +38,7 @@ router.post("/signin", async (req, res) => {
       req.session.username = foundUser.username;
       req.session.UserId = foundUser.id;
       req.session.loggedIn = true;
+      return res.json(foundUser);
     } else {
       return res.status(401).json({ msg: "incorrect username or password" });
     }

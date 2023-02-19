@@ -2,22 +2,24 @@ const loginBtn = document.querySelector("#login");
 
 loginBtn.addEventListener("click", async (e) => {
   e.preventDefault();
-  const newUserObj = {
+
+  const loginObj = {
     username: document.querySelector("#loginUsername").value,
     password: document.querySelector("#loginPassword").value,
   };
 
-  const loginUser = await fetch("/api/users/signin", {
+  fetch("/api/users/signin", {
     method: "POST",
-    body: JSON.stringify(newUserObj),
+    body: JSON.stringify(loginObj),
     headers: {
       "Content-Type": "application/json",
     },
+  }).then((res) => {
+    console.log(res);
+    if (res.ok) {
+      location.href = "/dashboard";
+    } else {
+      console.log(res.json());
+    }
   });
-
-  if (loginUser.ok) {
-    location.href = "/dashboard";
-  } else {
-    console.log("something went wrong");
-  }
 });
