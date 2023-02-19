@@ -7,6 +7,21 @@ router.get("/", async (req, res) => {
   res.json(postData);
 });
 
-router.post("/", async (req, res) => {});
+router.post("/", async (req, res) => {
+  if (!req.session.UserId) {
+    res.status(401).json({ msg: "Cannot post without being signed in" });
+  } else {
+    const newPost = await Post.create({
+      title: req.body.title,
+      post_text: req.body.post_text,
+    });
+    const user = await User.findByPk(req.session.UserId);
+
+    await user.addPost(newPost.id);
+    console.log(newPost);
+    console.log(user);
+    res.json({ msg: "check server console" });
+  }
+});
 
 module.exports = router;
