@@ -1,3 +1,6 @@
+<br>
+<h1 class="mx-3">All Posts</h1>
+<br>
 <section class="d-flex flex-column p-2 align-items-center">
 {{#each allPosts}}
 <div class="card text-bg-tertiary mb-3 w-100 rounded-0" style="min-width: 75%;">
@@ -14,6 +17,13 @@
 
 <div class="collapse m-3" id="{{id}}">
 {{!-- Create a div here under the collapsable section to enter text for a comment. --}}
+<form class="commentForm" id="{{id}}">
+  <div class="mb-3 d-flex w-75">
+    <label for="commentInput" class="form-label mx-3">Add a comment!</label>
+    <input type="email" class="form-control bg-secondary text-light-emphasis w-50" id="commentInput">
+    <button type="submit" class="btn btn-primary mx-3">Submit</button>
+  </div>
+</form>
 {{#each Comments}}
   <div class="card card-body rounded-0">
     {{comment_text}}
