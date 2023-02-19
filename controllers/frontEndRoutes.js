@@ -18,6 +18,22 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/dashboard", async (req, res) => {
+  if (!req.session.UserId) {
+    res.redirect("/signup");
+  } else {
+    const user = User.findOne({
+      where: {
+        username: req.session.username,
+      },
+    });
+    if (!user) {
+      res.redirect.apply("/signup");
+    }
+    res.render("dashboard");
+  }
+});
+
 router.get("/sessions", (req, res) => {
   res.json(req.session);
 });

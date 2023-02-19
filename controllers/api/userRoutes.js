@@ -36,7 +36,7 @@ router.post("/signin", async (req, res) => {
   } else {
     if (bcrypt.compareSync(req.body.password, foundUser.password)) {
       req.session.username = foundUser.username;
-      req.session.userId = foundUser.id;
+      req.session.UserId = foundUser.id;
       req.session.loggedIn = true;
     } else {
       return res.status(401).json({ msg: "incorrect username or password" });
