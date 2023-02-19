@@ -48,4 +48,5 @@ router.delete("/logout", async (req, res) => {
   req.session.destroy();
   res.json({ msg: "Logged out" });
 });
+
 module.exports = router;
