@@ -23,5 +23,6 @@ router.post("/", async (req, res) => {
     res.json({ msg: "check server console" });
   }
 });
+// TODO: Delete request to remove posts
 
 module.exports = router;

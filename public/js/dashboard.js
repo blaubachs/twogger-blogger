@@ -22,3 +22,5 @@ postBtn.addEventListener("click", async (e) => {
     console.log("woopsie!");
   }
 });
+
+// TODO: need fetch req to delete a post
