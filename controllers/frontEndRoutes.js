@@ -22,15 +22,20 @@ router.get("/dashboard", async (req, res) => {
   if (!req.session.UserId) {
     res.redirect("/signup");
   } else {
-    const user = User.findOne({
+    const user = await User.findOne({
       where: {
         username: req.session.username,
       },
+      include: [Post],
     });
+
     if (!user) {
       res.redirect.apply("/signup");
+    } else {
+      const userHbsData = user.toJSON();
+      console.log(userHbsData);
+      res.render("dashboard", userHbsData);
     }
-    res.render("dashboard");
   }
 });
 
