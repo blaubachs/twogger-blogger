@@ -11,14 +11,28 @@ router.get("/", async (req, res) => {
 
 router.post("/:id", async (req, res) => {
   // create a comment, the post req from the front end needs to grab the id of the post from the DOM.
-  const createComment = await Comment.create({
-    comment_text: req.body.comment_text,
-    PostId: req.params.id,
-  });
-  if (!createComment) {
-    res.status(500).json({ msg: "An error occurred!" });
+  if (!req.session.username) {
+    const createAnonymousComment = await Comment.create({
+      comment_text: `Anonymous says: ${req.body.comment_text}`,
+      PostId: req.params.id,
+    });
+
+    if (!createAnonymousComment) {
+      res.status(500).json({ msg: "An error occurred!" });
+    } else {
+      res.status(200).json(createAnonymousComment);
+    }
   } else {
-    res.status(200).json(createComment);
+    const createUserComment = await Comment.create({
+      comment_text: `${req.session.username} says: ${req.body.comment_text}`,
+      PostId: req.params.id,
+    });
+
+    if (!createUserComment) {
+      res.status(500).json({ msg: "An error occurred!" });
+    } else {
+      res.status(200).json(createUserComment);
+    }
   }
 });
 

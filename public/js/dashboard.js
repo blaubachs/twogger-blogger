@@ -25,7 +25,7 @@ postBtn.addEventListener("click", async (e) => {
     console.log("woopsie!");
   }
 });
-// TODO: Create a comment. Get the ID from a parent dom element.
+
 postDiv.addEventListener("click", async (e) => {
   e.preventDefault();
   if (e.target.matches("#commentSubmit")) {
@@ -53,4 +53,4 @@ postDiv.addEventListener("click", async (e) => {
     }
   }
 });
-// TODO: need fetch req to delete a post
+// TODO: need fetch req to delete a post off of the postDiv in another event listener
