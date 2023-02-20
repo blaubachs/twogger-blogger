@@ -1,15 +1,18 @@
 <div class="p-3 w-100 ">
     <h1>{{username}}'s Account</h1>
+    <br>
     <h2>Make a new post!</h2>
     {{> newpost}}
     <br>
     <h3>Your Posts:</h3>
+    <div id="postDiv">
     {{#each Posts}}
     <div class="card text-bg-tertiary mb-3 w-50 rounded-0 d-flex" style="min-width: 25%;">
     <div class="card-header">You Posted:</div>
     <div class="card-body">
         <h5 class="card-title">{{title}}</h5>
         <p class="card-text">{{post_text}}</p>
+        <p class="card-text">Posted on {{createdAt}}</p>
     </div>
     <p class="mx-3">
     <a class="btn btn-outline-light btn-sm" data-bs-toggle="collapse" href="#{{id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -26,7 +29,7 @@
     <div class="mb-3 d-flex w-75">
         <label for="commentInput" class="form-label mx-3">Add a comment!</label>
         <input class="form-control bg-secondary text-light-emphasis w-50" id="commentInput">
-        <button type="submit" class="btn btn-outline-primary btn-sm mx-3">Submit</button>
+        <button type="submit" class="btn btn-outline-primary btn-sm mx-3" id="commentSubmit">Submit</button>
     </div>
     </form>
     {{#each Comments}}
@@ -37,7 +40,7 @@
     </div>
     </div>
     {{/each}}
-
+</div>
 
 
 </div>

@@ -26,11 +26,16 @@ router.get("/dashboard", async (req, res) => {
       where: {
         username: req.session.username,
       },
-      include: [Post],
+      include: {
+        model: Post,
+        include: {
+          model: Comment,
+        },
+      },
     });
 
     if (!user) {
-      res.redirect.apply("/signup");
+      res.redirect("/signup");
     } else {
       const userHbsData = user.toJSON();
       console.log(userHbsData);
