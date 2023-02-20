@@ -1,5 +1,6 @@
 const postDiv = document.querySelector("#postDiv");
 
+// Comment on a post from the home page
 postDiv.addEventListener("click", async (e) => {
   e.preventDefault();
   if (e.target.matches("#commentSubmit")) {

@@ -8,6 +8,7 @@ router.get("/", async (req, res) => {
   res.json(postData);
 });
 
+// Create a new post
 router.post("/", async (req, res) => {
   if (!req.session.UserId) {
     res.status(401).json({ msg: "Cannot post without being signed in" });
@@ -24,7 +25,7 @@ router.post("/", async (req, res) => {
     res.json({ msg: "check server console" });
   }
 });
-// TODO: Delete request to remove posts
+//Delete request to remove posts
 router.delete("/:id", async (req, res) => {
   if (!req.session.UserId) {
     res.status(401).json({ msg: "must be logged in to remove a post" });

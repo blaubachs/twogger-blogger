@@ -26,6 +26,7 @@ postBtn.addEventListener("click", async (e) => {
   }
 });
 
+// Add a comment to your own post
 postDiv.addEventListener("click", async (e) => {
   e.preventDefault();
   if (e.target.matches("#commentSubmit")) {
@@ -53,7 +54,8 @@ postDiv.addEventListener("click", async (e) => {
     }
   }
 });
-// TODO: need fetch req to delete a post off of the postDiv in another event listener
+
+// Delete a post
 postDiv.addEventListener("click", async (e) => {
   e.preventDefault();
   if (e.target.matches("#deleteBtn")) {

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { User, Post, Comment } = require("../models");
 
+// This route gets all posts and their related data to render to the page on page load.
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -18,6 +19,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// This route finds one user and their related data to render to the page on page load.
 router.get("/dashboard", async (req, res) => {
   if (!req.session.UserId) {
     res.redirect("/signup");
@@ -44,9 +46,10 @@ router.get("/dashboard", async (req, res) => {
   }
 });
 
-router.get("/sessions", (req, res) => {
-  res.json(req.session);
-});
+// ! Not necessary for deployment.
+// router.get("/sessions", (req, res) => {
+//   res.json(req.session);
+// });
 
 router.get("/signup", async (req, res) => {
   res.render("signup");

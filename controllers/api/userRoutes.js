@@ -3,10 +3,7 @@ const router = express.Router();
 const { User, Post, Comment } = require("../../models");
 const bcrypt = require("bcrypt");
 
-router.get("/", (req, res) => {
-  res.send("user route");
-});
-
+// Create a new user
 router.post("/", async (req, res) => {
   const createUser = await User.create({
     username: req.body.username,
@@ -18,12 +15,14 @@ router.post("/", async (req, res) => {
   res.json(createUser);
 });
 
+// Find one user
 router.get("/:id", async (req, res) => {
   const findOneUser = await User.findByPk(req.params.id);
 
   res.json(findOneUser);
 });
 
+// Route to sign a user in, adding session data.
 router.post("/signin", async (req, res) => {
   const foundUser = await User.findOne({
     where: {
@@ -45,6 +44,7 @@ router.post("/signin", async (req, res) => {
   }
 });
 
+// This route signs out the user.
 router.delete("/logout", async (req, res) => {
   req.session.destroy();
   res.json({ msg: "Logged out" });

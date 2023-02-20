@@ -2,15 +2,15 @@ const express = require("express");
 const router = express.Router();
 const { User, Post, Comment } = require("../../models");
 
-// routes for creating a comment or getting a comment to be created here.
-
+// Returns all comments
 router.get("/", async (req, res) => {
   const allComments = await Comment.findAll();
   res.json(allComments);
 });
 
+// Takes in the id of the post, and then creates a comment attatched to the post.
 router.post("/:id", async (req, res) => {
-  // create a comment, the post req from the front end needs to grab the id of the post from the DOM.
+  // If the user is not logged in, it will be anonymous
   if (!req.session.username) {
     const createAnonymousComment = await Comment.create({
       comment_text: `Anonymous says: ${req.body.comment_text}`,
@@ -23,6 +23,7 @@ router.post("/:id", async (req, res) => {
       res.status(200).json(createAnonymousComment);
     }
   } else {
+    // If the user is logged in, their username will display
     const createUserComment = await Comment.create({
       comment_text: `${req.session.username} says: ${req.body.comment_text}`,
       PostId: req.params.id,
