@@ -36,9 +36,9 @@ router.delete("/:id", async (req, res) => {
       return res.status(403).json({ msg: "Not your post" });
     }
 
-    const deletePost = await Post.delete({
+    const deletePost = await Post.destroy({
       where: {
-        PostId: req.params.id,
+        id: req.params.id,
       },
     });
     if (!deletePost) {

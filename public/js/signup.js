@@ -18,7 +18,7 @@ signUpBtn.addEventListener("click", async (e) => {
   });
   console.log(createNewUser);
   if (createNewUser.ok) {
-    console.log(createNewUser);
+    location.href = "/dashboard";
   } else {
     console.log("something went wrong");
   }

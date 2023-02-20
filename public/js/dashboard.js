@@ -54,3 +54,22 @@ postDiv.addEventListener("click", async (e) => {
   }
 });
 // TODO: need fetch req to delete a post off of the postDiv in another event listener
+postDiv.addEventListener("click", async (e) => {
+  e.preventDefault();
+  if (e.target.matches("#deleteBtn")) {
+    let deleteBtn = e.target;
+    let postID = deleteBtn.parentNode.parentNode.children[3].getAttribute("id");
+    const deletePost = await fetch(`/api/posts/${postID}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (deletePost.ok) {
+      location.reload();
+    } else {
+      console.log("something went wrong!");
+    }
+  }
+});
